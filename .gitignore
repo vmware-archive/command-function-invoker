@@ -1,0 +1,10 @@
+shell-function-invoker
+.idea
+.DS_Store
+*.coverprofile
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
