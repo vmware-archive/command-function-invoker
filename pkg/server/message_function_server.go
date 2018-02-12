@@ -47,7 +47,7 @@ func (mfs *messageFunctionServer) Call(callServer function.MessageFunction_CallS
 
 		out, err := invoke(mfs.fnUri, in)
 		if err != nil {
-			return err
+			continue
 		}
 
 		err = callServer.Send(out)

@@ -18,6 +18,7 @@ package server
 
 import (
 	"bytes"
+	"log"
 	"os"
 	"os/exec"
 
@@ -47,6 +48,7 @@ func invoke(fnUri string, in *function.Message) (*function.Message, error) {
 	cmd.Stderr = os.Stderr
 	err := cmd.Run()
 	if err != nil {
+		log.Printf("Error returned from function run: %v\n", err)
 		return nil, err
 	}
 

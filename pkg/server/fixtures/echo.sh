@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo -n `cat`
+echo -n echoed `cat`

@@ -53,7 +53,7 @@ var _ = Describe("MessageFunctionServer", func() {
 
 		response, err := callClient.Recv()
 		Expect(err).NotTo(HaveOccurred())
-		Expect(string(response.Payload)).To(Equal("hello"))
+		Expect(string(response.Payload)).To(Equal("echoed hello"))
 		Expect(response.Headers).To(BeEmpty())
 
 	})
@@ -69,7 +69,7 @@ var _ = Describe("MessageFunctionServer", func() {
 
 		response, err := callClient.Recv()
 		Expect(err).NotTo(HaveOccurred())
-		Expect(string(response.Payload)).To(Equal("hello"))
+		Expect(string(response.Payload)).To(Equal("echoed hello"))
 		Expect(response.Headers[server.CorrelationId].Values).To(ConsistOf(correlationId))
 
 	})

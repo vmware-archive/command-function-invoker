@@ -30,11 +30,8 @@ import (
 	"google.golang.org/grpc"
 )
 
-var (
-	port = flag.Int("port", 10382, "The server port")
-)
-
 func main() {
+	port := flag.Int("port", 10382, "The server port")
 
 	flag.Parse()
 
@@ -48,16 +45,17 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
+	gRpcServer := grpc.NewServer()
+	function.RegisterMessageFunctionServer(gRpcServer, server.New(fnUri))
+
 	// Handle shutdown gracefully
 	go func() {
 		signals := make(chan os.Signal, 1)
 		signal.Notify(signals, os.Interrupt, syscall.SIGTERM)
 		<-signals
 		log.Println("Shutting Down...")
-		listener.Close()
+		gRpcServer.GracefulStop()
 	}()
 
-	gRpcServer := grpc.NewServer()
-	function.RegisterMessageFunctionServer(gRpcServer, server.New(fnUri))
 	gRpcServer.Serve(listener)
 }
