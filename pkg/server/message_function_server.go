@@ -27,7 +27,7 @@ type messageFunctionServer struct {
 	fnUri string
 }
 
-func New(fnUri string) *messageFunctionServer {
+func New(fnUri string) function.MessageFunctionServer {
 	return &messageFunctionServer{
 		fnUri: fnUri,
 	}
