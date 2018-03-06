@@ -1,0 +1,16 @@
+language: go
+go:
+  - "1.9"
+matrix:
+  include:
+    - stage: test
+      script: make test
+    - stage: publish
+      sudo: required
+      services:
+      - docker
+      script: make docker-publish
+stages:
+  - test
+  - name: publish
+    if: branch = master AND type = push
