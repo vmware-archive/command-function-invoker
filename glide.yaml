@@ -9,3 +9,9 @@ import:
   - context
 - package: google.golang.org/grpc
   version: ~1.9.2
+
+testImport:
+- package: github.com/onsi/ginkgo
+  version: v1.4.0
+- package: github.com/onsi/gomega
+  version: v1.3.0
