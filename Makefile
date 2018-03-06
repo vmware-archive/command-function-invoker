@@ -1,4 +1,4 @@
-.PHONY: build clean dockerize debug-dockerize docker-publish gen-mocks test gen-proto
+.PHONY: build clean dockerize debug-dockerize gen-mocks test gen-proto
 OUTPUT = shell-function-invoker
 
 GO_SOURCES = $(shell find cmd pkg -type f -name '*.go')
@@ -35,8 +35,3 @@ dockerize: $(GO_SOURCES) vendor
 debug-dockerize: $(GO_SOURCES) vendor
 	docker build . -t "projectriff/shell-function-invoker:latest" -f Dockerfile-debug
 	docker tag "projectriff/shell-function-invoker:latest" "projectriff/shell-function-invoker:$(TAG)"
-
-docker-publish: dockerize
-	docker tag "projectriff/shell-function-invoker:latest" "projectriff/shell-function-invoker:$(TAG)-ci-$(TRAVIS_COMMIT)"
-	docker login -u '$(DOCKER_USERNAME)' -p '$(DOCKER_PASSWORD)'
-	docker push "projectriff/shell-function-invoker"
