@@ -9,7 +9,7 @@ matrix:
       sudo: required
       services:
       - docker
-      script: make docker-publish
+      script: ./.travis.docker-publish.sh
 stages:
   - test
   - name: publish
