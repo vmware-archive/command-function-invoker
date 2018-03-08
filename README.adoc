@@ -1,4 +1,4 @@
-= Shell Function Invoker image:https://ci.projectriff.io/api/v1/teams/main/pipelines/riff/jobs/build-shell-function-invoker-container/badge[Shell Invoker Status, link=https://ci.projectriff.io/teams/main/pipelines/riff/build-shell-function-invoker-container/builds/latest]
+= Shell Function Invoker image:https://travis-ci.org/projectriff/shell-function-invoker.svg?branch=master["Build Status", link="https://travis-ci.org/projectriff/shell-function-invoker"]
 
 == Purpose
 The *shell function invoker* provides a Docker base layer for a function consisting of a single command.
