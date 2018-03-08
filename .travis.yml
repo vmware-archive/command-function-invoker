@@ -1,16 +1,19 @@
 language: go
 go:
-  - "1.9"
+- '1.9'
 matrix:
   include:
-    - stage: test
-      script: make test
-    - stage: publish
-      sudo: required
-      services:
-      - docker
-      script: ./.travis.docker-push.sh
+  - stage: test
+    script: make test
+  - stage: publish
+    sudo: required
+    services:
+    - docker
+    script: "./.travis.docker-push.sh"
 stages:
-  - test
-  - name: publish
-    if: branch = master AND type = push
+- test
+- name: publish
+  if: branch = master AND type = push
+notifications:
+  slack:
+    secure: QwcEIJcxUm+bOAUylDB5qV3tvlri5ND9ML3U2jEWf9z17PJ1qD9DjiLf9yEynmtqlEho7AXurS2KeT6hxBNIOmeJFug+liMBPHzh0e2zFDQoizZe6ZQEiQptoXPK3484+w5bZDFAz1VnU67Zsfy0mBqEqXAH1zAXiNuahIz1yUQEyAsmTNfsByZUDlobDnQWW02XpcMwOMhu6DP1ClxhF52cmjwMkR/QM0qw9yyEjz7k5RLXUS7YO94ktsubULbEwVK9bQUQ1ksAqlrXst5w4UF5qFN2+VB0NawqoIayZFD3vEB19WJ6FGJA3S8MI3ck+Mf1ErTCqfYuMUDaH4c0svIZmGaOjD+xEt8DPvnfJGr0UMuSOqeYizLwJeXHUIE4uutJzwzg8C+d50drwCZ6bcviQEnOXhR0p+YIIZA7yxQUyoZZn0eUNPI8Wcufb2tmURz54vew3AXquSZdr8QtIRBG2zbYvEDTogfN7I2V+lTwDatFyhu+T4a/7oycgtsoLVf0MT9o2ZRDwVqTKcVhZILI+qKnod9PLO5+yYYTqpf2TvW0gNldfvhzcTLupD68bBzvPznfZCH6xzqmZqxnYqb9A4gaQRqmAG5eiVQYzAsCCLZlP0ABZQ2HdEg6oDe1nbKtbSEqg8U/knASIoMMiG+dOPmsxJIQTwIzRod+TQE=
