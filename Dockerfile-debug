@@ -1,7 +1,7 @@
 FROM golang:1.9
 
-ARG PACKAGE=github.com/projectriff/shell-function-invoker
-ARG COMMAND=shell-function-invoker
+ARG PACKAGE=github.com/projectriff/command-function-invoker
+ARG COMMAND=command-function-invoker
 
 RUN go get github.com/derekparker/delve/cmd/dlv
 
@@ -15,4 +15,4 @@ COPY pkg/ pkg/
 RUN echo "continue" > /tmp/initfile
 
 RUN go build -gcflags="-N -l" cmd/${COMMAND}.go
-CMD dlv --headless --listen :2345 --api-version 2 --init /tmp/initfile exec ./shell-function-invoker
+CMD dlv --headless --listen :2345 --api-version 2 --init /tmp/initfile exec ./command-function-invoker

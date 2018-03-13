@@ -25,8 +25,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/projectriff/shell-function-invoker/pkg/function"
-	"github.com/projectriff/shell-function-invoker/pkg/server"
+	"github.com/projectriff/command-function-invoker/pkg/function"
+	"github.com/projectriff/command-function-invoker/pkg/server"
 	"google.golang.org/grpc"
 )
 

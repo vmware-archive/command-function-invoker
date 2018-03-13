@@ -20,7 +20,7 @@ import (
 	"io"
 	"log"
 
-	"github.com/projectriff/shell-function-invoker/pkg/function"
+	"github.com/projectriff/command-function-invoker/pkg/function"
 )
 
 type messageFunctionServer struct {

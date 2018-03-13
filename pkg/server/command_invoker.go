@@ -22,13 +22,12 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/projectriff/shell-function-invoker/pkg/function"
+	"github.com/projectriff/command-function-invoker/pkg/function"
 )
 
 const (
 	CorrelationId = "correlationId"
 )
-
 
 func invoke(fnUri string, in *function.Message) (*function.Message, error) {
 	var outputBuf bytes.Buffer
