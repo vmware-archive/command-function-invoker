@@ -12,8 +12,12 @@ test: build
 $(OUTPUT): $(GO_SOURCES) vendor
 	go build cmd/command-function-invoker.go
 
+ifdef CI
+vendor:
+else
 vendor: glide.lock
 	glide install -v --force
+endif
 
 glide.lock: glide.yaml
 	glide up -v --force
