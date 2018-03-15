@@ -10,8 +10,8 @@ import (
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/projectriff/shell-function-invoker/pkg/function"
-	"github.com/projectriff/shell-function-invoker/pkg/server"
+	"github.com/projectriff/command-function-invoker/pkg/function"
+	"github.com/projectriff/command-function-invoker/pkg/server"
 	"google.golang.org/grpc"
 )
 

@@ -1,4 +1,4 @@
-package: github.com/projectriff/shell-function-invoker
+package: github.com/projectriff/command-function-invoker
 import:
 - package: github.com/golang/protobuf
   version: ~1.0.0

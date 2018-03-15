@@ -7,7 +7,7 @@ set -o pipefail
 version=`cat VERSION`
 
 TAG="${version}" make dockerize
-docker tag "projectriff/shell-function-invoker:latest" "projectriff/shell-function-invoker:${version}-ci-${TRAVIS_COMMIT}"
+docker tag "projectriff/command-function-invoker:latest" "projectriff/command-function-invoker:${version}-ci-${TRAVIS_COMMIT}"
 
 docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
-docker push "projectriff/shell-function-invoker"
+docker push "projectriff/command-function-invoker"
