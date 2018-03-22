@@ -5,6 +5,13 @@ The *command function invoker* provides a Docker base layer for a function consi
 It accepts gRPC requests, invokes the command for each request in the input stream,
 and sends the command's output to the stream of gRPC responses.
 
+== Install as a riff invoker
+
+[source, bash]
+----
+kubectl apply -f command-invoker.yaml
+----
+
 == Development
 === Prerequisites
 The following tools are required to build this project:
