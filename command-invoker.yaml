@@ -23,10 +23,6 @@ spec:
     
     For example, from a directory named 'echo' containing a function 'echo.sh', you can simply type :
     
-        riff {{.Command}} -f .
-    
-      or
-    
-        riff {{.Command}}
+        riff {{.Command}} -a echo.sh
     
     to {{.Result}}.
