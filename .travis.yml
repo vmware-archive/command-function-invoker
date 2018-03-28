@@ -4,7 +4,8 @@ go:
 matrix:
   include:
   - stage: test
-    script: make test
+    install: go get github.com/projectriff/riff
+    script: make test verify-docs
   - stage: publish
     sudo: required
     services:
