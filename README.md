@@ -1,3 +1,5 @@
+⚠️ **This invoker will work with the 0.0.7 release of riff, and will be upgraded to work on more recent releases soon.**
+
 # Command Function Invoker [![Build Status](https://travis-ci.org/projectriff/command-function-invoker.svg?branch=master)](https://travis-ci.org/projectriff/command-function-invoker)
 
 ## Purpose
