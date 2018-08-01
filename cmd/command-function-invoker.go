@@ -19,14 +19,11 @@ package main
 import (
 	"fmt"
 	"log"
-	"net"
 	"os"
 	"os/signal"
 	"syscall"
 
-	"github.com/projectriff/command-function-invoker/pkg/function"
 	"github.com/projectriff/command-function-invoker/pkg/server"
-	"google.golang.org/grpc"
 	"strconv"
 	"net/http"
 	"context"
@@ -34,16 +31,7 @@ import (
 
 func main() {
 	var err error
-	grpcPort := 10382
 	httpPort := 8080
-
-	sGrpcPort := os.Getenv("GRPC_PORT")
-	if sGrpcPort != "" {
-		grpcPort, err = strconv.Atoi(sGrpcPort)
-		if err != nil {
-			log.Fatal("Unable to parse GRPC_PORT: ", err)
-		}
-	}
 
 	sHttpPort := os.Getenv("HTTP_PORT")
 	if sHttpPort != "" {
@@ -57,17 +45,6 @@ func main() {
 	if fnUri == "" {
 		log.Fatal("Environment variable $FUNCTION_URI not defined")
 	}
-
-	grpcListener, err := net.Listen("tcp", fmt.Sprintf(":%d", grpcPort))
-	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
-	}
-	gRpcServer := grpc.NewServer()
-	function.RegisterMessageFunctionServer(gRpcServer, server.New(fnUri))
-	go func() {
-		gRpcServer.Serve(grpcListener)
-		log.Printf("GRPC Server shut down properly")
-	}()
 
 	mux := http.NewServeMux()
 	httpServer := &http.Server{Addr: fmt.Sprintf(":%d", httpPort),
@@ -86,7 +63,6 @@ func main() {
 	signal.Notify(signals, os.Interrupt, syscall.SIGTERM)
 	<-signals
 	log.Println("Shutting Down...")
-	gRpcServer.GracefulStop()
 	httpServer.Shutdown(context.Background())
 
 }
