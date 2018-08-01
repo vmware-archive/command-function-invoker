@@ -17,7 +17,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"log"
 	"net"
@@ -28,34 +27,66 @@ import (
 	"github.com/projectriff/command-function-invoker/pkg/function"
 	"github.com/projectriff/command-function-invoker/pkg/server"
 	"google.golang.org/grpc"
+	"strconv"
+	"net/http"
+	"context"
 )
 
 func main() {
-	port := flag.Int("port", 10382, "The server port")
+	var err error
+	grpcPort := 10382
+	httpPort := 8080
 
-	flag.Parse()
+	sGrpcPort := os.Getenv("GRPC_PORT")
+	if sGrpcPort != "" {
+		grpcPort, err = strconv.Atoi(sGrpcPort)
+		if err != nil {
+			log.Fatal("Unable to parse GRPC_PORT: ", err)
+		}
+	}
+
+	sHttpPort := os.Getenv("HTTP_PORT")
+	if sHttpPort != "" {
+		httpPort, err = strconv.Atoi(sHttpPort)
+		if err != nil {
+			log.Fatal("Unable to parse HTTP_PORT: ", err)
+		}
+	}
 
 	fnUri := os.Getenv("FUNCTION_URI")
 	if fnUri == "" {
 		log.Fatal("Environment variable $FUNCTION_URI not defined")
 	}
 
-	listener, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", *port))
+	grpcListener, err := net.Listen("tcp", fmt.Sprintf(":%d", grpcPort))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
-
 	gRpcServer := grpc.NewServer()
 	function.RegisterMessageFunctionServer(gRpcServer, server.New(fnUri))
-
-	// Handle shutdown gracefully
 	go func() {
-		signals := make(chan os.Signal, 1)
-		signal.Notify(signals, os.Interrupt, syscall.SIGTERM)
-		<-signals
-		log.Println("Shutting Down...")
-		gRpcServer.GracefulStop()
+		gRpcServer.Serve(grpcListener)
+		log.Printf("GRPC Server shut down properly")
 	}()
 
-	gRpcServer.Serve(listener)
+	mux := http.NewServeMux()
+	httpServer := &http.Server{Addr: fmt.Sprintf(":%d", httpPort),
+		Handler: mux,
+	}
+	mux.HandleFunc("/", server.NewHttpAdapter(fnUri))
+	go func() {
+		if err := httpServer.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			panic(err)
+		}
+		log.Printf("HTTP Server shut down properly")
+	}()
+
+	// Handle shutdown gracefully
+	signals := make(chan os.Signal, 1)
+	signal.Notify(signals, os.Interrupt, syscall.SIGTERM)
+	<-signals
+	log.Println("Shutting Down...")
+	gRpcServer.GracefulStop()
+	httpServer.Shutdown(context.Background())
+
 }
