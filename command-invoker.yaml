@@ -13,7 +13,7 @@ spec:
   files:
   - path: Dockerfile
     template: |
-      FROM ericbottard/command-function-invoker:{{.InvokerVersion}}
+      FROM projectriff/command-function-invoker:{{.InvokerVersion}}
       ARG FUNCTION_URI="/{{.ArtifactBase}}"
       ADD {{.Artifact}} /
       ENV FUNCTION_URI $FUNCTION_URI
