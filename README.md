@@ -3,7 +3,7 @@
 ## Purpose
 
 The *command function invoker* provides a Docker base layer for a function consisting of a single command.
-It accepts HTTP requests, invokes the command for each request.
+It accepts HTTP requests and invokes the command for each request.
 
 
 ## Development
