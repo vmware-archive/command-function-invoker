@@ -14,9 +14,9 @@ spec:
   - path: Dockerfile
     template: |
       FROM projectriff/command-function-invoker:{{.InvokerVersion}}
-      ARG FUNCTION_URI="/{{.ArtifactBase}}"
-      ADD {{.Artifact}} /
-      ENV FUNCTION_URI $FUNCTION_URI
+      RUN mkdir /functions
+      ADD {{.Artifact}} /functions/
+      ENV FUNCTION_URI /functions/{{.ArtifactBase}}
   doc: |
     {{.Process}} the function based on the executable command specified as the filename, using the name
     and version specified for the function image repository and tag.
