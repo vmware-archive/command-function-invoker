@@ -18,6 +18,7 @@
 package server
 
 import (
+	"log"
 	"net/http"
 	"os/exec"
 )
@@ -30,6 +31,7 @@ func NewHttpAdapter(fnUri string) func(w http.ResponseWriter, r *http.Request) {
 		err := c.Run()
 		if err != nil {
 			w.WriteHeader(500)
+			log.Printf("Error invoking function: %v\n", err)
 		}
 	}
 }
