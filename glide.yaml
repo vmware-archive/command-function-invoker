@@ -1,14 +1,4 @@
 package: github.com/projectriff/command-function-invoker
-import:
-- package: github.com/golang/protobuf
-  version: ~1.0.0
-  subpackages:
-  - proto
-- package: golang.org/x/net
-  subpackages:
-  - context
-- package: google.golang.org/grpc
-  version: ~1.9.2
 
 testImport:
 - package: github.com/onsi/ginkgo
