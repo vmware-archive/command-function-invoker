@@ -8,3 +8,4 @@ command-function-invoker
 *.so
 *.dylib
 *.test
+command-function-invoker.tgz
