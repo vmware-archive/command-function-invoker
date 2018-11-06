@@ -39,4 +39,4 @@ debug-dockerize: $(GO_SOURCES) vendor
 	docker tag "projectriff/command-function-invoker:latest" "projectriff/command-function-invoker:$(TAG)"
 
 release: build LICENSE README.md
-	tar cvf $(OUTPUT).tgz LICENSE README.md $(OUTPUT)
+	tar cvzf $(OUTPUT).tgz LICENSE README.md $(OUTPUT)
