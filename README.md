@@ -39,14 +39,6 @@ To build locally (this will produce a binary named `command-function-invoker` on
 make build
 ```
 
-To build the Docker base layer:
-
-```bash
-make dockerize
-```
-
-This assumes that your docker client is correctly configured to target the daemon where you want the image built.
-
 To run tests:
 
 ```bash

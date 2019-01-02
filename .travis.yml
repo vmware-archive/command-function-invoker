@@ -6,19 +6,10 @@ jobs:
   - stage: test
     script: make test
   - stage: publish
-    sudo: required
-    services:
-    - docker
-    script: "./.travis.docker-push.sh"
-  - stage: publish
     script: "make release && ./.travis.gcs-publish.sh"
-  - stage: fats
-    script: "curl -s -L https://github.com/projectriff/fats/raw/master/.travis.fats-trigger.sh | bash"
 stages:
 - test
 - name: publish
-  if: branch = master AND type = push
-- name: fats
   if: branch = master AND type = push
 notifications:
   slack:

@@ -1,8 +1,10 @@
-.PHONY: build clean dockerize debug-dockerize gen-mocks test release
+.PHONY: all build clean gen-mocks test release
 OUTPUT = command-function-invoker
 
 GO_SOURCES = $(shell find cmd pkg -type f -name '*.go')
 TAG ?= $(shell cat VERSION)
+
+all: build test
 
 build: $(OUTPUT)
 
@@ -29,14 +31,6 @@ gen-mocks: $(GO_SOURCES)
 clean:
 	rm -f $(OUTPUT)
 	rm -f $(OUTPUT).tgz
-
-dockerize: $(GO_SOURCES) vendor
-	docker build . -t "projectriff/command-function-invoker:latest"
-	docker tag "projectriff/command-function-invoker:latest" "projectriff/command-function-invoker:$(TAG)"
-
-debug-dockerize: $(GO_SOURCES) vendor
-	docker build . -t "projectriff/command-function-invoker:latest" -f Dockerfile-debug
-	docker tag "projectriff/command-function-invoker:latest" "projectriff/command-function-invoker:$(TAG)"
 
 release: build LICENSE README.md
 	tar cvzf $(OUTPUT).tgz LICENSE README.md $(OUTPUT)
