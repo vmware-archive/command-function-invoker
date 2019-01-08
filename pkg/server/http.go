@@ -20,6 +20,7 @@ package server
 import (
 	"log"
 	"net/http"
+	"os"
 	"os/exec"
 )
 
@@ -28,6 +29,7 @@ func NewHttpAdapter(fnUri string) func(w http.ResponseWriter, r *http.Request) {
 		c := exec.Command(fnUri)
 		c.Stdin = r.Body
 		c.Stdout = w
+		c.Stderr = os.Stderr
 		err := c.Run()
 		if err != nil {
 			w.WriteHeader(500)
