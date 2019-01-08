@@ -2,8 +2,10 @@
 
 ## Purpose
 
-The *command function invoker* provides a Docker base layer for a function consisting of a single command.
+The *command function invoker* provides a host for functions implemented
+as a single executable command (be it a shell script or a binary).
 It accepts HTTP requests and invokes the command for each request.
+Communication with the function is done via `stdin` and `stdout`. 
 
 
 ## Development
