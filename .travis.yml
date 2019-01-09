@@ -1,10 +1,10 @@
 language: go
 go:
-- '1.11'
+- '1.11.4'
 jobs:
   include:
   - stage: test
-    script: make test
+    script: make build test
   - stage: publish
     script: "make release && ./.travis.gcs-publish.sh"
 stages:
