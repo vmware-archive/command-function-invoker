@@ -16,9 +16,9 @@ Functions can log by writing to `stderr`.
 
 The following tools are required to build this project:
 
+- A working go 1.11+ installation (1.11.4 or later)
 - `make`
 - Docker
-- [Glide](https://github.com/Masterminds/glide#install) for dependency management
 
 If you intend to re-generate mocks for testing, install:
 
@@ -27,13 +27,6 @@ If you intend to re-generate mocks for testing, install:
 If you would like to run tests using the `ginkgo` command, install:
 
 - [Ginkgo](http://onsi.github.io/ginkgo/)
-
-### Get the source
-
-```bash
-cd $(go env GOPATH)   #defaults to ~/go
-git clone -o upstream https://github.com/projectriff/command-function-invoker src/github.com/projectriff/command-function-invoker
-```
 
 ### Building
 
