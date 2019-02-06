@@ -15,7 +15,7 @@ $(OUTPUT): $(GO_SOURCES)
 	GO111MODULE=on go build cmd/command-function-invoker.go
 
 gen-mocks: $(GO_SOURCES)
-	go get -u github.com/vektra/mockery/.../
+	GO111MODULE=off go get -u github.com/vektra/mockery/.../
 	GO111MODULE=on go generate ./...
 
 clean:
