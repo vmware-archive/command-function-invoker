@@ -26,7 +26,7 @@ If you intend to re-generate mocks for testing, install:
 
 If you would like to run tests using the `ginkgo` command, install:
 
-- [Ginkgo](http://onsi.github.io/ginkgo/)
+- [Ginkgo](https://onsi.github.io/ginkgo/)
 
 ### Building
 
