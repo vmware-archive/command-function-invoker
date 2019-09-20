@@ -33,7 +33,7 @@ func main() {
 	var err error
 	httpPort := 8080
 
-	sHttpPort := os.Getenv("HTTP_PORT")
+	sHttpPort := os.Getenv("PORT")
 	if sHttpPort != "" {
 		httpPort, err = strconv.Atoi(sHttpPort)
 		if err != nil {
