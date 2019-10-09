@@ -16,7 +16,7 @@ Functions can log by writing to `stderr`.
 
 The following tools are required to build this project:
 
-- A working go 1.11+ installation (1.11.4 or later)
+- A working go 1.13+ installation (1.13.1 or later)
 - `make`
 - Docker
 
