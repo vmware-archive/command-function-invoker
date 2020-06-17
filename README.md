@@ -1,4 +1,4 @@
-# Command Function Invoker [![Build Status](https://travis-ci.com/projectriff/command-function-invoker.svg?branch=master)](https://travis-ci.com/projectriff/command-function-invoker)
+# Command Function Invoker [![Build Status](https://travis-ci.com/projectriff/command-function-invoker.svg?branch=main)](https://travis-ci.com/projectriff/command-function-invoker)
 
 ## Purpose
 
