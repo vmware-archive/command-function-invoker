@@ -12,7 +12,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2.3.2
+    - uses: actions/checkout@v2.3.3
     - uses: actions/setup-go@v2.1.2
       with:
         go-version: '1.13'
@@ -29,7 +29,7 @@ jobs:
       )
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.2
+      - uses: actions/checkout@v2.3.3
       - name: gcloud auth
         run: |
           gcloud config set disable_prompts True
